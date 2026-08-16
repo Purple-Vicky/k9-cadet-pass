@@ -1,1 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<title>K9 • RAFAC Camp Companion</title>
 
+<style>
+:root{
+ --navy:#07111f;
+ --panel:#0d1c30;
+ --line:#164b78;
+ --green:#9be51d;
+ --text:#f6f9ff;
+ --muted:#aab8ca;
+}
+
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ background:linear-gradient(180deg,#050c16,#0a1727);
+ color:var(--text);
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+.app{
+ max-width:520px;
+ margin:auto;
+ min-height:100vh;
+ padding:18px 15px 30px;
+}
+
+.brand{
+ display:flex;
+ align-items:center;
+ gap:12px;
+}
+
+.robot{font-size:44px}
+
+.brand h1{
+ margin:0;
+ font-size:29px;
+ letter-spacing:2px;
+}
+
+.brand p{
+ margin:2px 0 0;
+ color:#27a7ff;
+ font-weight:800;
+ font-size:11px;
+ letter-spacing:1px;
+}
+
+.welcome,.next,.card{
+ background:rgba(13,28,48,.97);
+ border:1px solid var(--line);
+ border-radius:20px;
+ margin-top:15px;
+ padding:18px;
+ box-shadow:0 10px 28px #0005;
+}
+
+.welcome h2{
+ margin:0 0 5px;
+ font-size:21px;
+}
+
+.flight{
+ color:#27a7ff;
+ font-weight:900;
+}
+
+.cadet-id{
+ font-size:12px;
+ color:var(--muted);
+ margin-top:4px;
+}
+
+.next{
+ border:2px solid var(--green);
+}
+
+.next h3{
+ margin:0 0 12px;
+ color:#baff36;
+}
+
+.activity{
+ font-size:22px;
+ font-weight:900;
+}
+
+.details{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ margin-top:14px;
+ color:var(--muted);
+}
+
+.uniform{
+ margin-top:16px;
+ padding:12px;
+ border-radius:13px;
+ font-weight:900;
+}
+
+.blues{
+ background:#174e9c;
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:11px;
+ margin-top:15px;
+}
+
+.btn{
+ padding:16px;
+ border-radius:16px;
+ background:#102b48;
+ border:1px solid #1d6195;
+ font-weight:850;
+}
+
+.btn small{
+ display:block;
+ color:var(--muted);
+ font-weight:500;
+ margin-top:4px;
+}
+
+.card h3{
+ margin:0 0 12px;
+}
+
+.reminder{
+ background:#1d83c7;
+ border-radius:15px;
+ padding:14px;
+ font-weight:800;
+}
+
+.footer{
+ text-align:center;
+ color:var(--muted);
+ font-size:12px;
+ margin-top:25px;
+}
+
+.footer strong{
+ color:white;
+}
+</style>
+</head>
+
+<body>
+
+<main class="app">
+
+<header class="brand">
+ <div class="robot">🤖🐕</div>
+ <div>
+  <h1>K9</h1>
+  <p>RAFAC CAMP COMPANION</p>
+ </div>
+</header>
+
+<section class="welcome">
+ <h2 id="welcome">Good morning, Cadet 001!</h2>
+ <div class="flight" id="flight">✈ FLIGHT A</div>
+ <div class="cadet-id" id="id">K9 ID: 001</div>
+</section>
+
+<section class="next">
+
+ <h3>🐾 K9 SAYS…</h3>
+
+ <div class="activity">
+  YOUR NEXT ACTIVITY
+ </div>
+
+ <div class="activity" style="margin-top:8px">
+  ✈️ Flying — Slot 4
+ </div>
+
+ <div class="details">
+  <span>
+   🕙 10:45<br>
+   <small>Report 10:30</small>
+  </span>
+
+  <span>
+   📍 Flying Area
+  </span>
+ </div>
+
+ <div class="uniform blues">
+  👕 BLUES &nbsp; • &nbsp; 🎒 Hat
+ </div>
+
+</section>
+
+<div class="grid">
+
+ <div class="btn">
+  📅 MY WEEK
+  <small>Full programme</small>
+ </div>
+
+ <div class="btn">
+  ✈️ FLYING
+  <small>Your flying slots</small>
+ </div>
+
+ <div class="btn">
+  🍽️ MEALS
+  <small>Times & locations</small>
+ </div>
+
+ <div class="btn">
+  📍 MAP
+  <small>Find your way</small>
+ </div>
+
+ <div class="btn">
+  📢 K9 ALERTS
+  <small>Changes & announcements</small>
+ </div>
+
+ <div class="btn">
+  🎒 EQUIPMENT
+  <small>What you need</small>
+ </div>
+
+ <div class="btn">
+  👕 UNIFORM
+  <small>What to wear</small>
+ </div>
+
+ <div class="btn">
+  ℹ️ CAMP INFO
+  <small>Help & information</small>
+ </div>
+
+</div>
+
+<section class="card">
+ <h3>🐾 K9 REMINDER</h3>
+ <div class="reminder">
+  Don't forget your hat!
+ </div>
+</section>
+
+<footer class="footer">
+ Designed &amp; developed by<br>
+ <strong>Sqn Ldr Vicky O’Dell</strong>
+</footer>
+
+</main>
+
+<script>
+
+const params = new URLSearchParams(location.search);
+
+let id =
+ (params.get("cadet") || "001")
+ .replace(/\D/g,"")
+ .padStart(3,"0");
+
+if(+id < 1 || +id > 100){
+ id="001";
+}
+
+const number = +id;
+
+const flight =
+ number <= 25 ? "A" :
+ number <= 50 ? "B" :
+ number <= 75 ? "C" : "D";
+
+document.getElementById("welcome").textContent =
+ `Good morning, Cadet ${id}!`;
+
+document.getElementById("flight").textContent =
+ `✈ FLIGHT ${flight}`;
+
+document.getElementById("id").textContent =
+ `K9 ID: ${id}`;
+
+</script>
+
+</body>
+</html>
